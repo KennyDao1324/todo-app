@@ -52,6 +52,16 @@ const formatCountdown = (value: string, now: number) => {
   return isPast ? `Overdue by ${days}d ${time}` : `${days}d ${time} left`
 }
 
+const isWithinAlertWindow = (value: string, now: number) => {
+  if (!value) {
+    return false
+  }
+
+  const dueTime = new Date(`${value}T23:59:59`).getTime()
+  const diff = dueTime - now
+  return diff > 0 && diff <= 1000 * 60 * 60 * 12
+}
+
 const toDateValue = (value: string) => {
   if (!value) {
     return Number.POSITIVE_INFINITY
@@ -542,7 +552,13 @@ function App() {
                           <p className="task-meta">
                             {task.category} • {formatDate(task.dueDate)}
                           </p>
-                          <p className="task-countdown">{formatCountdown(task.dueDate, now)}</p>
+                          <p
+                            className={`task-countdown ${
+                              isWithinAlertWindow(task.dueDate, now) ? 'alert' : ''
+                            }`}
+                          >
+                            {formatCountdown(task.dueDate, now)}
+                          </p>
                         </div>
 
                         <select

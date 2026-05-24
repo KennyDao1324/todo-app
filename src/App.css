@@ -302,6 +302,10 @@ textarea {
   font-variant-numeric: tabular-nums;
 }
 
+.task-countdown.alert {
+  color: var(--priority-high);
+}
+
 .task-description {
   max-width: 62ch;
   line-height: 1.55;
