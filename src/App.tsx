@@ -152,6 +152,14 @@ function App() {
     [tasks, today],
   )
 
+  const alertNotifications = useMemo(
+    () =>
+      tasks
+        .filter((task) => task.status !== 'Done' && isWithinAlertWindow(task.dueDate, now))
+        .sort((left, right) => toDateValue(left.dueDate) - toDateValue(right.dueDate)),
+    [now, tasks],
+  )
+
   const filteredTasks = useMemo(() => {
     const term = search.trim().toLowerCase()
 
@@ -265,6 +273,21 @@ function App() {
 
   return (
     <main className="app-shell">
+      {alertNotifications.length > 0 ? (
+        <aside className="notification-stack" aria-live="assertive" aria-label="Urgent task alerts">
+          {alertNotifications.map((task) => (
+            <article key={task.id} className="notification-toast">
+              <p className="notification-label">Urgent task</p>
+              <strong>{task.title}</strong>
+              <p className="notification-copy">
+                Please do this task immediately before it is late.
+              </p>
+              <span className="notification-time">{formatCountdown(task.dueDate, now)}</span>
+            </article>
+          ))}
+        </aside>
+      ) : null}
+
       <section className="hero-panel">
         <div>
           <p className="eyebrow">TaskFlow OS</p>

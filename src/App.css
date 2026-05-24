@@ -4,6 +4,64 @@
   padding: 2rem 0 3rem;
 }
 
+.notification-stack {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 20;
+  display: grid;
+  gap: 0.75rem;
+  width: min(22rem, calc(100vw - 2rem));
+}
+
+.notification-toast {
+  border: 1px solid rgba(196, 78, 82, 0.24);
+  border-radius: 20px;
+  padding: 1rem 1.05rem;
+  background: rgba(255, 247, 247, 0.96);
+  box-shadow: var(--shadow-strong);
+  animation: toast-slide-in 0.25s ease;
+}
+
+.notification-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--priority-high);
+}
+
+.notification-toast strong {
+  display: block;
+  color: var(--text-strong);
+}
+
+.notification-copy {
+  margin: 0.35rem 0 0;
+  color: var(--text-soft);
+}
+
+.notification-time {
+  display: inline-block;
+  margin-top: 0.65rem;
+  color: var(--priority-high);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .hero-panel,
 .composer-card,
 .board-card,
@@ -395,6 +453,12 @@ textarea {
   .app-shell {
     width: min(100% - 1rem, 100%);
     padding-top: 0.75rem;
+  }
+
+  .notification-stack {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: min(100vw - 1.5rem, 22rem);
   }
 
   .hero-panel,
