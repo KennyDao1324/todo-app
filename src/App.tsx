@@ -2,8 +2,7 @@ import { type FormEvent, useState } from 'react'
 import './App.css'
 import { HeroSection } from './components/HeroSection'
 import { NotificationStack } from './components/NotificationStack'
-import { TaskBoard } from './components/TaskBoard'
-import { TaskComposer } from './components/TaskComposer'
+import { TaskWorkspace } from './components/TaskWorkspace'
 import { useClock } from './hooks/useClock'
 import { useTaskDashboard } from './hooks/useTaskDashboard'
 import { useTaskManager } from './hooks/useTaskManager'
@@ -43,34 +42,25 @@ function App() {
     <main className="app-shell">
       <NotificationStack tasks={alertNotifications} now={now} />
       <HeroSection {...taskSummary} />
-
-      <section className="content-grid">
-        <TaskComposer
-          draft={draft}
-          setDraft={setDraft}
-          editingId={editingId}
-          categories={categories}
-          highlightedTasks={highlightedTasks}
-          today={today}
-          now={now}
-          onSubmit={handleSubmit}
-          onCancel={resetDraft}
-        />
-
-        <TaskBoard
-          search={search}
-          setSearch={setSearch}
-          filters={filters}
-          setFilters={setFilters}
-          categories={categories}
-          tasks={filteredTasks}
-          today={today}
-          now={now}
-          onEdit={startEditingTask}
-          onDelete={deleteTask}
-          onStatusChange={updateTaskStatus}
-        />
-      </section>
+      <TaskWorkspace
+        draft={draft}
+        setDraft={setDraft}
+        editingId={editingId}
+        categories={categories}
+        highlightedTasks={highlightedTasks}
+        today={today}
+        now={now}
+        onSubmit={handleSubmit}
+        onCancel={resetDraft}
+        search={search}
+        setSearch={setSearch}
+        filters={filters}
+        setFilters={setFilters}
+        tasks={filteredTasks}
+        onEdit={startEditingTask}
+        onDelete={deleteTask}
+        onStatusChange={updateTaskStatus}
+      />
     </main>
   )
 }
