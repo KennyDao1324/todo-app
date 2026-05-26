@@ -16,6 +16,7 @@ interface TaskBoardProps {
   tasks: Task[]
   today: number
   now: number
+  onViewDetails: (task: Task) => void
   onEdit: (task: Task) => void
   onDelete: (taskId: string) => void
   onStatusChange: (taskId: string, status: Task['status']) => void
@@ -31,6 +32,7 @@ export function TaskBoard({
   tasks,
   today,
   now,
+  onViewDetails,
   onEdit,
   onDelete,
   onStatusChange,
@@ -189,6 +191,9 @@ export function TaskBoard({
                 </div>
 
                 <div className="task-actions">
+                  <button type="button" className="ghost-button" onClick={() => onViewDetails(task)}>
+                    View
+                  </button>
                   <button type="button" className="ghost-button" onClick={() => onEdit(task)}>
                     Edit
                   </button>

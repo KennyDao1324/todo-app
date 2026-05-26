@@ -4,6 +4,7 @@ import { formatDate, predictorLabel } from '../utils/taskHelpers'
 interface PastDuePageProps {
   tasks: Task[]
   today: number
+  onViewDetails: (task: Task) => void
   onEdit: (task: Task) => void
   onDelete: (taskId: string) => void
   onStatusChange: (taskId: string, status: Task['status']) => void
@@ -13,6 +14,7 @@ interface PastDuePageProps {
 export function PastDuePage({
   tasks,
   today,
+  onViewDetails,
   onEdit,
   onDelete,
   onStatusChange,
@@ -61,7 +63,9 @@ export function PastDuePage({
                       <p className="task-meta">
                         {task.category} • Due {formatDate(task.dueDate)}
                       </p>
-                      <p className="task-countdown alert">Deadline has passed</p>
+                      <p className="task-countdown alert">
+                        {task.dueDate ? `Missed ${formatDate(task.dueDate)}` : 'Deadline has passed'}
+                      </p>
                     </div>
 
                     <select
@@ -82,6 +86,9 @@ export function PastDuePage({
                 </div>
 
                 <div className="task-actions">
+                  <button type="button" className="ghost-button" onClick={() => onViewDetails(task)}>
+                    View
+                  </button>
                   <button type="button" className="ghost-button" onClick={() => onEdit(task)}>
                     Edit
                   </button>

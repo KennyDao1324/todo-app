@@ -19,6 +19,7 @@ interface TaskWorkspaceProps {
   filters: FilterState
   setFilters: Dispatch<SetStateAction<FilterState>>
   tasks: Task[]
+  onViewDetails: (task: Task) => void
   onEdit: (task: Task) => void
   onDelete: (taskId: string) => void
   onStatusChange: (taskId: string, status: Task['status']) => void
@@ -40,6 +41,7 @@ export function TaskWorkspace({
   filters,
   setFilters,
   tasks,
+  onViewDetails,
   onEdit,
   onDelete,
   onStatusChange,
@@ -68,6 +70,7 @@ export function TaskWorkspace({
         tasks={tasks}
         today={today}
         now={now}
+        onViewDetails={onViewDetails}
         onEdit={onEdit}
         onDelete={onDelete}
         onStatusChange={onStatusChange}

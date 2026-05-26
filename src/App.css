@@ -98,6 +98,69 @@
   animation: toast-slide-in 0.25s ease;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(7, 15, 24, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.task-modal {
+  width: min(42rem, 100%);
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow-strong);
+  padding: 1.5rem;
+}
+
+.task-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.task-modal-header h2,
+.task-modal-panel h3 {
+  margin: 0;
+  color: var(--text-strong);
+}
+
+.task-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.task-modal-card,
+.task-modal-panel {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.42);
+  padding: 1rem;
+}
+
+.task-modal-card span,
+.task-modal-panel p {
+  color: var(--text-soft);
+}
+
+.task-modal-card strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-strong);
+}
+
+.task-modal-panel {
+  margin-top: 1rem;
+}
+
 .notification-label {
   margin: 0 0 0.35rem;
   font-size: 0.75rem;
@@ -637,5 +700,9 @@ textarea {
 
   .task-actions {
     width: 100%;
+  }
+
+  .task-modal-grid {
+    grid-template-columns: 1fr;
   }
 }

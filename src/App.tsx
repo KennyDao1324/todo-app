@@ -4,11 +4,13 @@ import { HeroSection } from './components/HeroSection'
 import { NotificationStack } from './components/NotificationStack'
 import { PageNavigation } from './components/PageNavigation'
 import { PastDuePage } from './components/PastDuePage'
+import { TaskDetailsModal } from './components/TaskDetailsModal'
 import { TaskWorkspace } from './components/TaskWorkspace'
 import { useClock } from './hooks/useClock'
 import { usePageRoute } from './hooks/usePageRoute'
 import { useTaskDashboard } from './hooks/useTaskDashboard'
 import { useTaskManager } from './hooks/useTaskManager'
+import { useTaskPreview } from './hooks/useTaskPreview'
 import { useTheme } from './hooks/useTheme'
 import { type FilterState } from './taskStore'
 import { initialFilters } from './utils/taskHelpers'
@@ -18,6 +20,7 @@ function App() {
   const { now, today } = useClock()
   const { page, navigateTo } = usePageRoute()
   const { theme, toggleTheme } = useTheme()
+  const { selectedTask, openTaskPreview, closeTaskPreview } = useTaskPreview()
   const {
     tasks,
     draft,
@@ -49,6 +52,7 @@ function App() {
   return (
     <main className="app-shell">
       <NotificationStack tasks={alertNotifications} now={now} />
+      <TaskDetailsModal task={selectedTask} now={now} onClose={closeTaskPreview} />
       <div className="app-toolbar">
         <PageNavigation currentPage={page} onNavigate={navigateTo} />
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
@@ -58,6 +62,7 @@ function App() {
         <PastDuePage
           tasks={pastDueTasks}
           today={today}
+          onViewDetails={openTaskPreview}
           onEdit={startEditingTask}
           onDelete={deleteTask}
           onStatusChange={updateTaskStatus}
@@ -79,6 +84,7 @@ function App() {
           filters={filters}
           setFilters={setFilters}
           tasks={filteredTasks}
+          onViewDetails={openTaskPreview}
           onEdit={startEditingTask}
           onDelete={deleteTask}
           onStatusChange={updateTaskStatus}
