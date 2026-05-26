@@ -74,11 +74,20 @@ export const useTaskDashboard = ({
     [tasks, today],
   )
 
+  const pastDueTasks = useMemo(
+    () =>
+      tasks
+        .filter((task) => Boolean(task.dueDate) && toDateValue(task.dueDate) < today)
+        .sort((left, right) => toDateValue(right.dueDate) - toDateValue(left.dueDate)),
+    [tasks, today],
+  )
+
   return {
     categories,
     highlightedTasks,
     alertNotifications,
     filteredTasks,
     taskSummary,
+    pastDueTasks,
   }
 }

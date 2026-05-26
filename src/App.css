@@ -4,6 +4,40 @@
   padding: 2rem 0 3rem;
 }
 
+.page-nav {
+  display: inline-flex;
+  gap: 0.65rem;
+  margin: 0 0 1rem;
+  padding: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+.page-nav-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.15rem;
+  background: transparent;
+  color: var(--text-soft);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.18s ease;
+}
+
+.page-nav-button:hover {
+  transform: translateY(-1px);
+}
+
+.page-nav-button.active {
+  background: linear-gradient(135deg, var(--accent), #1d7f73);
+  color: #f7fffd;
+}
+
 .notification-stack {
   position: fixed;
   top: 1.25rem;
@@ -162,6 +196,25 @@
   gap: 1.5rem;
   margin-top: 1.5rem;
   align-items: start;
+}
+
+.past-due-page {
+  margin-top: 1.5rem;
+}
+
+.past-due-summary {
+  display: grid;
+  justify-items: end;
+  color: var(--text-soft);
+}
+
+.past-due-summary strong {
+  color: var(--priority-high);
+  font-size: 1.5rem;
+}
+
+.past-due-card {
+  background: linear-gradient(180deg, rgba(255, 246, 246, 0.94), rgba(249, 237, 237, 0.98));
 }
 
 .composer-card,
@@ -453,6 +506,15 @@ textarea {
   .app-shell {
     width: min(100% - 1rem, 100%);
     padding-top: 0.75rem;
+  }
+
+  .page-nav {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .page-nav-button {
+    flex: 1 1 0;
   }
 
   .notification-stack {
