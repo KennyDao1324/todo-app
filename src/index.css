@@ -26,6 +26,26 @@
   --shadow-strong: 0 20px 48px rgba(16, 37, 59, 0.15);
 }
 
+:root[data-theme='dark'] {
+  color: #eaf1f7;
+  background:
+    radial-gradient(circle at top, rgba(42, 157, 143, 0.18), transparent 28%),
+    linear-gradient(180deg, #101b26 0%, #162433 100%);
+  --surface: rgba(22, 36, 51, 0.8);
+  --surface-strong: rgba(28, 45, 62, 0.92);
+  --border: rgba(200, 224, 243, 0.12);
+  --text-strong: #eff7ff;
+  --text-soft: #aab8c8;
+  --accent: #42b5a5;
+  --accent-deep: #8fe6da;
+  --priority-high: #ff8f8f;
+  --priority-medium: #f3c56e;
+  --priority-low: #8bb9ff;
+  --success: #7dd9a4;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.28);
+  --shadow-strong: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -54,6 +74,18 @@ body::before {
       transparent 24px
     );
   pointer-events: none;
+}
+
+:root[data-theme='dark'] body::before {
+  background:
+    linear-gradient(rgba(8, 12, 18, 0.45), rgba(8, 12, 18, 0.12)),
+    repeating-linear-gradient(
+      135deg,
+      rgba(187, 215, 245, 0.03) 0,
+      rgba(187, 215, 245, 0.03) 12px,
+      transparent 12px,
+      transparent 24px
+    );
 }
 
 button,

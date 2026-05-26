@@ -9,12 +9,15 @@ import { useClock } from './hooks/useClock'
 import { usePageRoute } from './hooks/usePageRoute'
 import { useTaskDashboard } from './hooks/useTaskDashboard'
 import { useTaskManager } from './hooks/useTaskManager'
+import { useTheme } from './hooks/useTheme'
 import { type FilterState } from './taskStore'
 import { initialFilters } from './utils/taskHelpers'
+import { ThemeToggle } from './components/ThemeToggle'
 
 function App() {
   const { now, today } = useClock()
   const { page, navigateTo } = usePageRoute()
+  const { theme, toggleTheme } = useTheme()
   const {
     tasks,
     draft,
@@ -45,7 +48,10 @@ function App() {
   return (
     <main className="app-shell">
       <NotificationStack tasks={alertNotifications} now={now} />
-      <PageNavigation currentPage={page} onNavigate={navigateTo} />
+      <div className="app-toolbar">
+        <PageNavigation currentPage={page} onNavigate={navigateTo} />
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      </div>
       <HeroSection {...taskSummary} />
       {page === 'past-due' ? (
         <PastDuePage
