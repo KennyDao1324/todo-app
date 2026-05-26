@@ -35,6 +35,7 @@ export const useTaskManager = () => {
       dueDate: draft.dueDate,
       category: draft.category.trim(),
       status: draft.status,
+      pinned: editingId ? tasks.find((task) => task.id === editingId)?.pinned ?? false : false,
       createdAt: editingId
         ? tasks.find((task) => task.id === editingId)?.createdAt ?? new Date().toISOString()
         : new Date().toISOString(),
@@ -85,6 +86,16 @@ export const useTaskManager = () => {
     )
   }
 
+  const toggleTaskPinned = (taskId: string) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, pinned: !task.pinned, updatedAt: new Date().toISOString() }
+          : task,
+      ),
+    )
+  }
+
   return {
     tasks,
     draft,
@@ -95,5 +106,6 @@ export const useTaskManager = () => {
     startEditingTask,
     deleteTask,
     updateTaskStatus,
+    toggleTaskPinned,
   }
 }

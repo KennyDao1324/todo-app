@@ -22,6 +22,7 @@ interface TaskWorkspaceProps {
   onEdit: (task: Task) => void
   onDelete: (taskId: string) => void
   onStatusChange: (taskId: string, status: Task['status']) => void
+  onTogglePin: (taskId: string) => void
 }
 
 export function TaskWorkspace({
@@ -42,6 +43,7 @@ export function TaskWorkspace({
   onEdit,
   onDelete,
   onStatusChange,
+  onTogglePin,
 }: TaskWorkspaceProps) {
   return (
     <section className="content-grid">
@@ -69,6 +71,7 @@ export function TaskWorkspace({
         onEdit={onEdit}
         onDelete={onDelete}
         onStatusChange={onStatusChange}
+        onTogglePin={onTogglePin}
       />
     </section>
   )

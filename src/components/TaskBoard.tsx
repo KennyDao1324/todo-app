@@ -19,6 +19,7 @@ interface TaskBoardProps {
   onEdit: (task: Task) => void
   onDelete: (taskId: string) => void
   onStatusChange: (taskId: string, status: Task['status']) => void
+  onTogglePin: (taskId: string) => void
 }
 
 export function TaskBoard({
@@ -33,6 +34,7 @@ export function TaskBoard({
   onEdit,
   onDelete,
   onStatusChange,
+  onTogglePin,
 }: TaskBoardProps) {
   return (
     <section className="board-card">
@@ -141,6 +143,14 @@ export function TaskBoard({
                   <div className="task-header">
                     <div>
                       <div className="task-title-row">
+                        <button
+                          type="button"
+                          className={`pin-button ${task.pinned ? 'active' : ''}`}
+                          onClick={() => onTogglePin(task.id)}
+                          aria-label={task.pinned ? `Unpin ${task.title}` : `Pin ${task.title}`}
+                        >
+                          {task.pinned ? 'Pinned' : 'Pin'}
+                        </button>
                         <h3>{task.title}</h3>
                         <span className={`priority-badge ${task.priority.toLowerCase()}`}>
                           {task.priority}

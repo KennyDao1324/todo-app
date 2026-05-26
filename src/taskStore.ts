@@ -9,6 +9,7 @@ export interface Task {
   dueDate: string
   category: string
   status: TaskStatus
+  pinned: boolean
   createdAt: string
   updatedAt: string
 }
@@ -45,6 +46,7 @@ const seedTasks = (): Task[] => [
     dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString().slice(0, 10),
     category: 'Work',
     status: 'In Progress',
+    pinned: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -56,6 +58,7 @@ const seedTasks = (): Task[] => [
     dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 4).toISOString().slice(0, 10),
     category: 'Personal',
     status: 'To Do',
+    pinned: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -67,6 +70,7 @@ const seedTasks = (): Task[] => [
     dueDate: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString().slice(0, 10),
     category: 'Bills',
     status: 'To Do',
+    pinned: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -83,9 +87,15 @@ export const emptyTaskDraft = (): TaskDraft => ({
 
 const migrateTasks = (tasks: Task[]): Task[] =>
   tasks.map((task) =>
-    task.description === legacyDescription
-      ? { ...task, description: updatedDescription, updatedAt: new Date().toISOString() }
-      : task,
+    ({
+      ...task,
+      description: task.description === legacyDescription ? updatedDescription : task.description,
+      pinned: task.pinned ?? false,
+      updatedAt:
+        task.description === legacyDescription || task.pinned === undefined
+          ? new Date().toISOString()
+          : task.updatedAt,
+    }),
   )
 
 export const loadTasks = (): Task[] => {

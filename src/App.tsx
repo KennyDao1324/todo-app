@@ -28,6 +28,7 @@ function App() {
     startEditingTask,
     deleteTask,
     updateTaskStatus,
+    toggleTaskPinned,
   } = useTaskManager()
   const [filters, setFilters] = useState<FilterState>(initialFilters)
   const [search, setSearch] = useState('')
@@ -60,6 +61,7 @@ function App() {
           onEdit={startEditingTask}
           onDelete={deleteTask}
           onStatusChange={updateTaskStatus}
+          onTogglePin={toggleTaskPinned}
         />
       ) : (
         <TaskWorkspace
@@ -80,6 +82,7 @@ function App() {
           onEdit={startEditingTask}
           onDelete={deleteTask}
           onStatusChange={updateTaskStatus}
+          onTogglePin={toggleTaskPinned}
         />
       )}
     </main>

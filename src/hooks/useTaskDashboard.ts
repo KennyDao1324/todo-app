@@ -8,6 +8,14 @@ import {
   toDateValue,
 } from '../utils/taskHelpers'
 
+const sortTasks = (left: Task, right: Task) => {
+  if (left.pinned !== right.pinned) {
+    return left.pinned ? -1 : 1
+  }
+
+  return toDateValue(left.dueDate) - toDateValue(right.dueDate)
+}
+
 interface UseTaskDashboardOptions {
   tasks: Task[]
   filters: FilterState
@@ -35,12 +43,13 @@ export const useTaskDashboard = ({
       ),
     [tasks, today],
   )
+  const sortedHighlightedTasks = useMemo(() => [...highlightedTasks].sort(sortTasks), [highlightedTasks])
 
   const alertNotifications = useMemo(
     () =>
       tasks
         .filter((task) => task.status !== 'Done' && isWithinAlertWindow(task.dueDate, now))
-        .sort((left, right) => toDateValue(left.dueDate) - toDateValue(right.dueDate)),
+        .sort(sortTasks),
     [now, tasks],
   )
 
@@ -61,7 +70,7 @@ export const useTaskDashboard = ({
           value.toLowerCase().includes(term),
         )
       })
-      .sort((left, right) => toDateValue(left.dueDate) - toDateValue(right.dueDate))
+      .sort(sortTasks)
   }, [filters, search, tasks, today])
 
   const taskSummary = useMemo(
@@ -78,13 +87,19 @@ export const useTaskDashboard = ({
     () =>
       tasks
         .filter((task) => Boolean(task.dueDate) && toDateValue(task.dueDate) < today)
-        .sort((left, right) => toDateValue(right.dueDate) - toDateValue(left.dueDate)),
+        .sort((left, right) => {
+          if (left.pinned !== right.pinned) {
+            return left.pinned ? -1 : 1
+          }
+
+          return toDateValue(right.dueDate) - toDateValue(left.dueDate)
+        }),
     [tasks, today],
   )
 
   return {
     categories,
-    highlightedTasks,
+    highlightedTasks: sortedHighlightedTasks,
     alertNotifications,
     filteredTasks,
     taskSummary,
