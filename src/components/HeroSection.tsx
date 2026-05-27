@@ -9,7 +9,6 @@ export function HeroSection({ total, inProgress, overdue, completed }: HeroSecti
   return (
     <section className="hero-panel">
       <div>
-        <p className="eyebrow">TaskFlow OS</p>
         <h1>My Tasks</h1>
         <p className="hero-copy">Track priorities, manage deadlines, and keep work moving.</p>
       </div>

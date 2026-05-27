@@ -18,7 +18,7 @@
   padding: 0.8rem 1rem;
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-soft);
   color: var(--text-strong);
   box-shadow: var(--shadow-soft);
   cursor: pointer;
@@ -51,7 +51,7 @@
   margin: 0 0 1rem;
   padding: 0.45rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-soft);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
 }
@@ -93,7 +93,7 @@
   border: 1px solid rgba(196, 78, 82, 0.24);
   border-radius: 20px;
   padding: 1rem 1.05rem;
-  background: rgba(255, 247, 247, 0.96);
+  background: var(--surface-strong);
   box-shadow: var(--shadow-strong);
   animation: toast-slide-in 0.25s ease;
 }
@@ -142,7 +142,7 @@
 .task-modal-panel {
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.42);
+  background: var(--surface-panel);
   padding: 1rem;
 }
 
@@ -229,6 +229,10 @@
     var(--surface);
 }
 
+:root[data-theme='dark'] .hero-panel {
+  background: var(--surface);
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0 0 0.5rem;
@@ -270,7 +274,7 @@
 .metric-card {
   border-radius: 24px;
   padding: 1.1rem 1rem;
-  background: rgba(255, 255, 255, 0.62);
+  background: var(--surface-muted);
 }
 
 .metric-card span {
@@ -318,7 +322,7 @@
 }
 
 .past-due-card {
-  background: linear-gradient(180deg, rgba(255, 246, 246, 0.94), rgba(249, 237, 237, 0.98));
+  background: var(--surface-danger);
 }
 
 .composer-card,
@@ -477,7 +481,7 @@ textarea {
   gap: 1rem;
   border-radius: 24px;
   padding: 1.15rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 247, 242, 0.96));
+  background: var(--surface-task);
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease;
@@ -509,7 +513,7 @@ textarea {
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.28rem 0.6rem;
-  background: rgba(255, 255, 255, 0.58);
+  background: var(--surface-soft);
   color: var(--text-soft);
   cursor: pointer;
   font-size: 0.76rem;
@@ -529,6 +533,52 @@ textarea {
   border-color: rgba(233, 196, 106, 0.42);
   background: rgba(233, 196, 106, 0.24);
   color: #7a5600;
+}
+
+:root[data-theme='dark'] .page-nav-button.active,
+:root[data-theme='dark'] .primary-button {
+  color: #071114;
+}
+
+:root[data-theme='dark'] .theme-toggle-value,
+:root[data-theme='dark'] .notification-toast strong,
+:root[data-theme='dark'] .task-modal-card strong,
+:root[data-theme='dark'] .metric-card strong,
+:root[data-theme='dark'] .task-card h3 {
+  color: var(--text-strong);
+}
+
+:root[data-theme='dark'] .notification-copy,
+:root[data-theme='dark'] .task-meta,
+:root[data-theme='dark'] .task-description,
+:root[data-theme='dark'] .hero-copy,
+:root[data-theme='dark'] .task-modal-panel p,
+:root[data-theme='dark'] .metric-card span,
+:root[data-theme='dark'] .theme-toggle-label {
+  color: var(--text-soft);
+}
+
+:root[data-theme='dark'] .status-select,
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] textarea,
+:root[data-theme='dark'] select {
+  background: rgba(36, 55, 76, 0.96);
+  color: var(--text-strong);
+}
+
+:root[data-theme='dark'] .ghost-button {
+  background: rgba(66, 181, 165, 0.16);
+  color: #b8fff6;
+}
+
+:root[data-theme='dark'] .danger-button {
+  background: rgba(255, 143, 143, 0.16);
+  color: #ffc0c0;
+}
+
+:root[data-theme='dark'] .pin-button.active {
+  color: #ffe298;
+  background: rgba(243, 197, 110, 0.18);
 }
 
 .task-card h3 {

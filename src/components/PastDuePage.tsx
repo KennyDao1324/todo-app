@@ -24,7 +24,7 @@ export function PastDuePage({
     <section className="board-card past-due-page">
       <div className="section-heading">
         <div>
-          <p className="section-kicker">History</p>
+          <p className="section-kicker">My history</p>
           <h2>Past deadline tasks</h2>
         </div>
         <div className="past-due-summary">

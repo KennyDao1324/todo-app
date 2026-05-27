@@ -13,6 +13,11 @@
 
   --surface: rgba(255, 255, 255, 0.78);
   --surface-strong: rgba(255, 255, 255, 0.9);
+  --surface-soft: rgba(255, 255, 255, 0.72);
+  --surface-muted: rgba(255, 255, 255, 0.62);
+  --surface-panel: rgba(255, 255, 255, 0.42);
+  --surface-task: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 247, 242, 0.96));
+  --surface-danger: linear-gradient(180deg, rgba(255, 246, 246, 0.94), rgba(249, 237, 237, 0.98));
   --border: rgba(23, 50, 77, 0.11);
   --text-strong: #10253b;
   --text-soft: #5b6b7b;
@@ -28,16 +33,19 @@
 
 :root[data-theme='dark'] {
   color: #eaf1f7;
-  background:
-    radial-gradient(circle at top, rgba(42, 157, 143, 0.18), transparent 28%),
-    linear-gradient(180deg, #101b26 0%, #162433 100%);
-  --surface: rgba(22, 36, 51, 0.8);
-  --surface-strong: rgba(28, 45, 62, 0.92);
-  --border: rgba(200, 224, 243, 0.12);
-  --text-strong: #eff7ff;
-  --text-soft: #aab8c8;
-  --accent: #42b5a5;
-  --accent-deep: #8fe6da;
+  background: #2b2d30;
+  --surface: rgba(53, 56, 61, 0.9);
+  --surface-strong: rgba(62, 66, 72, 0.96);
+  --surface-soft: rgba(58, 62, 68, 0.94);
+  --surface-muted: rgba(70, 74, 80, 0.94);
+  --surface-panel: rgba(66, 70, 76, 0.96);
+  --surface-task: rgba(60, 63, 68, 0.98);
+  --surface-danger: rgba(77, 51, 56, 0.96);
+  --border: rgba(220, 225, 232, 0.11);
+  --text-strong: #f3f8fd;
+  --text-soft: #c0c7d1;
+  --accent: #4fb8ab;
+  --accent-deep: #a5efe6;
   --priority-high: #ff8f8f;
   --priority-medium: #f3c56e;
   --priority-low: #8bb9ff;
@@ -77,15 +85,7 @@ body::before {
 }
 
 :root[data-theme='dark'] body::before {
-  background:
-    linear-gradient(rgba(8, 12, 18, 0.45), rgba(8, 12, 18, 0.12)),
-    repeating-linear-gradient(
-      135deg,
-      rgba(187, 215, 245, 0.03) 0,
-      rgba(187, 215, 245, 0.03) 12px,
-      transparent 12px,
-      transparent 24px
-    );
+  background: #2b2d30;
 }
 
 button,
